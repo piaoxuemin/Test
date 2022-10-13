@@ -1,0 +1,143 @@
+<%= render 'layouts/model_errors', error_message: @service_product %>
+<div class="bg-white border border-pangea-border-light-gray rounded-lg">
+  <div class="w-full rounded-lg">
+
+    <div class="flex flex-row border-b border-pangea-border-light-gray">
+      <div class="w-1/2 p-8">
+        <h2 class="text-2xl font-semibold mb-4">PORTFOLIO</h2>
+        <%= f.label :portfolio_images, 'Portfolio Images (maximum 10 images)', class: "text-gray-800 font-medium block text-base" %>
+        <div class='dropzone mt-2' data-controller='dropzone'>
+          <%= f.file_field :portfolio_images, multiple: true, direct_upload: true, data: { dropzone_target: 'dropzoneImages', service_product_id: @service_product.id, service_product_images_url: !@service_product.id.nil? ? get_service_images_path(@service_product.id) : "" } %>
+        </div>
+        <div class="border-x border-b border-gray-300 flex flex-row p-3 mb-6 rounded-b-lg">
+          <div class="flex">
+            <i class="material-icons mr-1 text-gray-200" style="font-size:6rem;">check_circle</i>
+          </div>
+          <div class="flex items-center p-2 ml-5">
+            <ul class="list-disc">
+              <li>
+                Recommended size: 500 x 300px (5:3 ratio)
+              </li>
+              <li>
+                Restriction: Maximum 10 images. Svg file is not allowed. Max size: 1MB
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="w-1/2 p-8" data-controller="service-fee">
+        <h2 class="text-2xl font-semibold mb-4">TITLE</h2>
+        <div class="">
+          <%= f.label :service, 'Service Category', class: "text-gray-800 font-medium block mb-3 text-base" %>
+          <% if @service_product.id.nil? %>
+            <%= f.select :service_id, @services.collect { |i| [i.service_name, i.id] }, { prompt: 'Select a service' }, class: "bg-white border border-pangea-border-gray px-4 py-2 rounded-lg focus:outline-none", data: { service_fee_target: "serviceSelect", action: "change->service-fee#service_change" } %>
+          <% else %>
+            <div>
+              <%= @service_product.service.service_name %>
+              <%= f.hidden_field :service_id %>
+            </div>
+          <% end %>
+          <%= f.hidden_field :id %>
+        </div>
+        <div class="mb-6">
+          <%= f.label :title, 'Title', class: "text-gray-800 font-medium block my-3 text-base" %>
+          <%= f.text_field :title, placeholder: "Type Your Service's Title", class: "w-full bg-white border border-pangea-border-gray px-4 py-2 rounded-lg focus:outline-none font-base text-base" %>
+        </div>
+        <hr class="my-3">
+        <div class="mt-6">
+          <%= f.label :service_fee_currency, 'Currency', class: "text-gray-800 font-medium block my-3 text-base" %>
+          <%= f.select :service_fee_currency, [["Canadian Dollar (CAD)", "CAD"], ["United States Dollar (USD)", "USD"], ["Euro (EUR)", "EUR"], ["British Pound (GBP)", "GBP"], ["Australian Dollar (AUD)", "AUD"], ["Japanese Yen (YEN)", "JPY"], ["Korean Won (WON)", "KRW"]], { prompt: 'Select a province' }, class: "bg-white border border-pangea-border-gray px-4 py-2 rounded-lg focus:outline-none" %>
+        </div>
+        <div class="my-6">
+          <%= f.label :service_fee, 'Service Fee', class: "text-gray-800 font-medium block my-3 text-base" %>
+          <table class="border border-pangea-border-light-gray">
+            <thead>
+            <tr class="border-b border-pangea-border-light-gray">
+              <td class="align-top py-2 px-4 border-r border-pangea-border-light-gray">
+                Category
+              </td>
+              <td class="align-top py-2 px-4">
+                Price
+              </td>
+            </tr>
+            </thead>
+            <tbody data-service-fee-target="serviceFeeTable" id='service_fee_table'>
+            <%= f.fields :service_product_fees, :validate => true do |rf| %>
+              <tr class="p-2 align-center border-b border-pangea-border-light-gray">
+                <td class="align-center py-2 px-4 border-r border-pangea-border-light-gray">
+                  <%= rf.object.service_fee_category.category_name.titleize %>
+                </td>
+                <td class="align-center py-2 px-4">
+                  <%= rf.number_field :price, class: "bg-white border border-pangea-border-light-gray px-4 py-2 rounded-lg focus:outline-none", step: 0.01 %>
+                </td>
+                <%= rf.hidden_field :service_fee_category_id %>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <hr class="my-3">
+        <h2 class="text-2xl font-semibold mb-4">WORK SPECS</h2>
+        <div class="flex flex-col">
+          <div class="flex flex-col">
+            <%= f.label :delivery_time, 'Delivery Time Per Project', class: "text-gray-800 font-medium block text-base" %>
+            <%= f.select :delivery_time, options_for_select(ServiceProduct.delivery_times.map { |key, value| [key.titleize, key] }, @service_product.delivery_time), { prompt: 'Select a delivery time' }, class: "w-3/5 bg-white border border-pangea-border-light-gray px-4 py-2 rounded-lg focus:outline-none" %>
+          </div>
+          <div class="flex flex-col">
+            <%= f.label :available_tasks, 'The Number of Available Tasks', class: "text-gray-800 font-medium block text-base" %>
+            <%= f.number_field :available_tasks, placeholder: '#', class: "w-3/5 bg-white border border-pangea-border-light-gray px-4 py-2 rounded-lg focus:outline-none" %>
+          </div>
+        </div>
+        <%= f.label :software, 'Software', class: "text-gray-800 font-medium block mt-3 text-base" %>
+        <div class="my-6">
+          <div class="grid grid-cols-3">
+            <% Software.all.each do |software| %>
+              <%= f.fields @service_product, :validate => true do |df| %>
+                <div class="flex flex-row">
+                  <%= df.check_box "#{:software_version_ids}_#{software.name.downcase}", class: "text-gray-800 font-medium block text-base" %>
+                  <%= df.label "#{:software_version_ids}_#{software.name.downcase}", software.name, class: "text-gray-800 font-medium block text-base mx-2 py-2" %>
+                </div>
+              <% end %>
+            <% end %>
+
+            <div class="flex flex-row">
+              <%= f.check_box :software_version_ids %>
+              <%= f.label :software_version_ids, "Others", { class: "mx-2 py-2" } %>
+              <%= f.text_field :software_version_ids, placeholder: "Specify", class: "w-full bg-white border border-pangea-border-gray px-4 py-2 rounded-lg focus:outline-none font-base text-base" %>
+            </div>
+          </div>
+        </div>
+        <hr class="my-3">
+        <h2 class="text-2xl font-semibold">SERVICE DESCRIPTION</h2>
+        <div class="mt-6">
+          <%= f.label :service_information, 'Service Information', class: "text-gray-800 font-medium block my-3 text-base" %>
+          <%= f.rich_text_area :service_information, class: "trix-content customized-min-height" %>
+        </div>
+        <div class="border-x border-b border-gray-300 flex flex-row p-3 mb-3 rounded-b-lg">
+          <div class="flex">
+            <i class="material-icons mr-1 text-gray-200" style="font-size:5rem;">check_circle</i>
+          </div>
+          <div class="flex items-center p-2 ml-5 text-sm">
+            <ul class="list-disc">
+              <li>
+                Please fill up the designer bio (ex. work experience or education), procedures, precautions so that the
+                client can understand them easily.
+              </li>
+              <li>
+                Personal contact information (phone number, e-mail, link, etc.) cannot be exposed.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<div class="actions flex w-full text-right my-8 justify-end">
+  <%= f.button type: "submit", class: "bg-pangea-blue rounded-lg px-12 py-2 text-white tracking-wide font-medium text-sm font-sans disabled:opacity-50 hover:bg-indigo-500" do %>
+    <span class="show-when-enabled">Finish</span>
+    <span class="show-when-disabled"><i class="fa fa-spinner fa-spin"></i></span>
+  <% end %>
+</div>
