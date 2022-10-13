@@ -1,0 +1,202 @@
+<%
+  if orderable.emergence_width_options.empty?
+    orderable.emergence_width_options = Array.new(1) { EmergenceWidthOption.new }
+  end
+%>
+<div class="flex flex-row">
+  <div class="flex flex-col">
+    <div class="border rounded-lg border-gray-300 flex flex-col mt-4 p-8">
+      <div class="flex flex-col">
+        <div class="flex flex-row items-center pb-2">
+          <%= f.label :implant_brand, "IMPLANT BRAND", class: "text-gray-800 font-semibold block text-md whitespace-nowrap" %>
+          <%= f.text_field :implant_brand, placeholder: "specify", autofocus: true, class: implant_header_label(disable_form), disabled: disable_form %>
+        </div>
+        <div class="flex flex-row items-center py-2">
+          <%= f.label :scanbody_library, "SCANBODY-LIBRARY", class: "text-gray-800 font-semibold block text-md whitespace-nowrap" %>
+          <%= f.text_field :scanbody_library, placeholder: "specify", autofocus: true, class: implant_header_label(disable_form), disabled: disable_form %>
+        </div>
+      </div>
+      <hr class="my-2">
+      <div class="text-2xl font-semibold my-2">Select Tooth Number</div>
+      <div class="flex flex-row">
+        <div class="flex flex-row items-center p-2">
+          <%= f.radio_button :tooth_number_type, "FDI", disabled: disable_form %>
+          <%= f.label :tooth_number_type_fdi, "FDI", class: order_form_label(disable_form)+" mr-2" %>
+        </div>
+        <div class="flex flex-row items-center p-2">
+          <%= f.radio_button :tooth_number_type, "UNI", disabled: disable_form %>
+          <%= f.label :tooth_number_type_uni, "UNI", class: order_form_label(disable_form) %>
+        </div>
+      </div>
+      <%= render "teeth_image", disable_form: disable_form %>
+        <%= f.hidden_field :teeth %>
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+      <div class="border rounded-lg border-gray-300 flex flex-col mt-4 p-8">
+
+        <div class="<%= order_form_label_header_wrap(disable_form) %>">
+          <div class="<%= order_form_label_header(disable_form) %>">Abutment Margin Depth</div>
+        </div>
+        <div class="flex flex-row">
+          <table class="text-center border-collapse px-2">
+            <tr>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600">
+                Buccal/facial
+                <div class="flex flex-row">
+                  <%= f.number_field :buccal_facial_1, class: implant_label(disable_form), value: 1.0, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+              <td rowspan="2">
+                <%= image_tag implant_image_url("abutment", disable_form), class: "w-40 align-middle bg-gray-100 p-1", value: 0.5 %>
+              </td>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600 border-r">
+                Mesial
+                <div class="flex flex-row">
+                  <%= f.number_field :buccal_facial_2, class: implant_label(disable_form), value: 0.5, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600">
+                Lingual
+                <div class="flex flex-row">
+                  <%= f.number_field :buccal_facial_3, class: implant_label(disable_form), value: 0.5, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600 border-r">
+                Distal
+                <div class="flex flex-row">
+                  <%= f.number_field :distal, class: implant_label(disable_form), value: 0.5, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center border-r">
+                Anterior
+              </td>
+            </tr>
+          </table>
+          <table class="text-center border-collapse px-2">
+            <tr>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600">
+                Buccal/facial
+                <div class="flex flex-row">
+                  <%= f.number_field :buccal_facial_1, class: implant_label(disable_form), value: 0.5, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+              <td rowspan="2">
+                <%= image_tag implant_image_url("abutment", disable_form), class: "w-40 align-middle bg-gray-100 p-1", value: 0.5 %>
+              </td>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600">
+                Mesial
+                <div class="flex flex-row">
+                  <%= f.number_field :buccal_facial_2, class: implant_label(disable_form), value: 0.5, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600">
+                Lingual
+                <div class="flex flex-row">
+                  <%= f.number_field :buccal_facial_3, class: implant_label(disable_form), value: 0.5, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+              <td class="text-sm font-semibold pb-2 px-3 text-gray-600">
+                Distal
+                <div class="flex flex-row">
+                  <%= f.number_field :distal, class: implant_label(disable_form), value: 0.5, min: 0, step: 0.01, disabled: disable_form %>
+                  <span class="py-2 text-gray-400">mm</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                Posterior
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="<%= order_form_label_header_wrap(disable_form) %> mt-4">
+          <div class="<%= order_form_label_header(disable_form) %>">Emergence Width Option</div>
+        </div>
+        <div class="grid grid-cols-5 gap-2 mb-2">
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_width_option, "Tissue", disabled: disable_form %>
+            <%= f.label :emergence_width_option_tissue do %>
+              <%= image_tag implant_image_url("no-tissue-displacement", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">No tissue displacement</div>
+            <% end %>
+          </div>
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_width_option, "Support", disabled: disable_form %>
+            <%= f.label :emergence_width_option_support do %>
+              <%= image_tag implant_image_url("support-tissue", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">Support tissue</div>
+            <% end %>
+          </div>
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_width_option, "Contour soft", disabled: disable_form %>
+            <%= f.label :emergence_width_option_contour_soft do %>
+              <%= image_tag implant_image_url("contour-soft-tissue", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">Contour soft tissue</div>
+              <div class="mb-2 text-xs text-gray-600">(Default if no selection is made)</div>
+            <% end %>
+          </div>
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_width_option, "Full anatomical", disabled: disable_form %>
+            <%= f.label :emergence_width_option_full_anatomical do %>
+              <%= image_tag implant_image_url("full-anatomical-dimensions", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">Full anatomical</div>
+              <div class="my-2 text-sm text-gray-600">dimensions</div>
+            <% end %>
+          </div>
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_width_option, "Anatomical support", disabled: disable_form %>
+            <%= f.label :emergence_width_option_anatomical_support do %>
+              <%= image_tag implant_image_url("anatomical-support", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">anatomical support</div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="<%= order_form_label_header_wrap(disable_form) %>">
+          <div class="<%= order_form_label_header(disable_form) %>">Emergence Shape Option</div>
+        </div>
+        <div class="grid grid-cols-5 gap-2 mb-2">
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_shape_option, "Concave", disabled: disable_form %>
+            <%= f.label :emergence_shape_option_concave do %>
+              <%= image_tag implant_image_url("concave", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">Concave</div>
+              <div class="mb-2 text-xs text-gray-600">(Default if no selection is made)</div>
+            <% end %>
+          </div>
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_shape_option, "Straight", disabled: disable_form %>
+            <%= f.label :emergence_shape_option_straight do %>
+              <%= image_tag implant_image_url("straight", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">Straight</div>
+            <% end %>
+          </div>
+          <div class="flex flex-col items-center w-40 rounded-lg p-2 text-center">
+            <%= f.radio_button :emergence_shape_option, "Convex", disabled: disable_form %>
+            <%= f.label :emergence_shape_option_convex do %>
+              <%= image_tag implant_image_url("convex", disable_form), class: 'w-48' %>
+              <div class="uppercase mt-2 font-semibold text-sm text-gray-600">Convex</div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>
