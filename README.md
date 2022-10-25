@@ -13,3 +13,11 @@
 .dropzone .dz-preview .dz-error-message {
     top: 150px!important;
 }
+
+    /pangea_dental_app/app/views/users/registrations/choose_user_type.html.erb
+    31~35
+        <div onclick="location.href='/user/checkprivacy';" >
+          <%= link_to '', class: "border rounded border-gray-300 p-2 mt-3 block text-base font-medium leading-loose text-pangea-gray-text flex items-center hover:bg-pangea-blue hover:text-white hover:border-pangea-blue" do%>
+            <i class="material-icons mr-2">check</i><p>Sign up as designer</p>
+          <% end %>
+        </div>
