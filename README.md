@@ -6,3 +6,10 @@
   <textarea class="text-gray-800 block text-md w-full focus:text-gray-700 focus:bg-white rounded focus:border-gray-700 transition ease-in-out focus:outline-none" name="user[designer][description]" id="user_designer_description" cols="40" rows="8" data-validate="true"><%= user.userable.description %></textarea>
   <% end %>
   </div>
+    
+    
+/pangea_dental_app/app/assets/stylesheets/home.scss
+304~306
+.dropzone .dz-preview .dz-error-message {
+    top: 150px!important;
+}
