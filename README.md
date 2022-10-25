@@ -14,10 +14,14 @@
     top: 150px!important;
 }
 
-    /pangea_dental_app/app/views/users/registrations/choose_user_type.html.erb
-    31~35
+/pangea_dental_app/app/views/users/registrations/choose_user_type.html.erb
+31~35
         <div onclick="location.href='/user/checkprivacy';" >
           <%= link_to '', class: "border rounded border-gray-300 p-2 mt-3 block text-base font-medium leading-loose text-pangea-gray-text flex items-center hover:bg-pangea-blue hover:text-white hover:border-pangea-blue" do%>
             <i class="material-icons mr-2">check</i><p>Sign up as designer</p>
           <% end %>
         </div>
+
+/pangea_dental_app/app/views/users/shared/_address_fields.html.erb
+2
+            @countries = CS.countries.slice(:CA, :US, :UK, :FR, :JP, :IT, :AU, :DE, :KR, :CN, :AT, :BE, :CL, :CO, :CR, :CZ, :DK, :EE, :FI, :GR, :HU, :IS, :IE, :IL, :LV, :LT, :LU, :MX, :NL, :NZ, :NO, :PL, :PT, :SK, :SI, :ES, :SE, :CH, :TR)
