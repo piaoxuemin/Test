@@ -26,6 +26,6 @@
 2
             @countries = CS.countries.slice(:CA, :US, :UK, :FR, :JP, :IT, :AU, :DE, :KR, :CN, :AT, :BE, :CL, :CO, :CR, :CZ, :DK, :EE, :FI, :GR, :HU, :IS, :IE, :IL, :LV, :LT, :LU, :MX, :NL, :NZ, :NO, :PL, :PT, :SK, :SI, :ES, :SE, :CH, :TR)
 
-            
+            https://online.immi.gov.au/elp/app
 Austrilia Visa Group: ZTBDHO (Samuel Park's Family Group)  Transaction Reference Number (TRN): EGOV2SWHT1
 I am Korean-Chinese. I am currently working as a software developer in Seoul. I have been working here since 2013, and the end date of my current visa is July 4, 2032.
