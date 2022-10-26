@@ -29,3 +29,30 @@
             https://online.immi.gov.au/elp/app
 Austrilia Visa Group: ZTBDHO (Samuel Park's Family Group)  Transaction Reference Number (TRN): EGOV2SWHT1
 I am Korean-Chinese. I am currently working as a software developer in Seoul. I have been working here since 2013, and the end date of my current visa is July 4, 2032.
+            
+    /pangea_dental_app/app/models/service_product.rb
+            32~55
+def minimum_fee
+    mFee = 0
+    service_product_fees.each do |fee|
+       puts "------------"
+      case service.service_code
+      when "PartialDentureFrame"
+        mFee = get_service_fee("frame").price
+      when "CompleteDenture"
+        mFee = get_service_fee("monoblock").price
+      when "SurgicalGuide"
+        mFee = get_service_fee("first_implant").price
+      when "OrthoAppliance"
+        mFee = get_service_fee("night_guard").price
+      when "ThreeDimensionPrintModelDesign"
+        mFee = get_service_fee("denture_base_only").price
+      when "CrownAndBridge"
+        mFee = get_service_fee("service_fee").price
+      else
+        mFee = get_service_fee("unit").price
+      end
+       puts "------------"
+    end
+    mFee
+  end
