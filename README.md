@@ -45,10 +45,8 @@ def minimum_fee
         mFee = get_service_fee("first_implant").price
       when "OrthoAppliance"
         mFee = get_service_fee("night_guard").price
-      when "ThreeDimensionPrintModelDesign"
-        mFee = get_service_fee("denture_base_only").price
-      when "CrownAndBridge"
-        mFee = get_service_fee("service_fee").price
+      when "Other"
+        mFee = get_service_fee("flipper_base").price
       else
         mFee = get_service_fee("unit").price
       end
