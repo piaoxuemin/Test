@@ -54,3 +54,20 @@ def minimum_fee
     end
     mFee
   end
+            
+            /pangea_dental_app/app/views/users/registrations/choose_user_type.html.erb
+29~41
+            
+                  <div class="text-lg mt-10 font-medium">Selling my design? (as designer)</div>
+      <%#= link_to user_checkprivacy_path, class: "border rounded border-gray-300 p-2 mt-3 block text-base font-medium leading-loose text-pangea-gray-text flex items-center hover:bg-pangea-blue hover:text-white hover:border-pangea-blue" do%>
+      <script language="JavaScript" type="text/JavaScript">
+          $(document).on('click', '#linkClick', function(event) {
+              event.preventDefault();
+              window.location.href = "/user/checkprivacy";
+          });
+      </script>
+      <div id="linkClick" style="cursor:pointer">
+        <%= link_to '', class: "border rounded border-gray-300 p-2 mt-3 block text-base font-medium leading-loose text-pangea-gray-text flex items-center hover:bg-pangea-blue hover:text-white hover:border-pangea-blue" do%>
+          <i class="material-icons mr-2">check</i><p>Sign up as designer</p>
+        <% end %>
+      </div>
