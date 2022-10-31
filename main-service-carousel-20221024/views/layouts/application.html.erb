@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pangea - Digital Dental World</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'wind', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <%= javascript_importmap_tags('application', shim: true) %>
+  <%= favicon_link_tag asset_path('favicon.ico') %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+</head>
+<body>
+<div class="flex flex-col justify-center" data-turbolinks="false">
+  <%= render "layouts/header" %>
+  <div class="flex flex-wrap items-center h-10 py-1 text-pangea-brown backdrop-blur height-fit 2xl:height-unset max-width">
+    <%= render "layouts/service_category_nav" %>
+    <!--<div class="font-normal text-white font-poppins items-center font-medium flex px-4">
+      <%= link_to 'Software Centre', software_center_path %>
+    </div>-->
+  </div>
+  <div class="justify-center min-h-screen">
+    <% flash.each do |name, msg| %>
+      <% if msg.class == Array %>
+        <% msg.each do |message| %>
+          <%= content_tag :div, message, :id => "flash_#{name}" %>
+        <% end %>
+      <% else %>
+        <%= render "layouts/flash", message: msg, type: name %>
+      <% end %>
+    <% end %>
+    <%
+      @margin_class = controller_name != "home" ? "px-48 pt-10 pb-28 px-2-max-991" : ""
+    %>
+    <div class="<%= @margin_class %>">
+      <%= yield %>
+    </div>
+  </div>
+  <%= render "layouts/footer" %>
+  <%= render "layouts/scroll_up_button" %>
+</div>
+</body>
+</html>

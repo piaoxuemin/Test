@@ -1,0 +1,67 @@
+<div class="border border-pangea-border-light-gray flex flex-col rounded-lg relative overflow-hidden">
+  <div id="service_product_carousel" class="owl-carousel carousel block" data-controller="carousel" data-items-sm="1" data-items-md="1" data-items="1" data-carousel-target="carouselImages" data-nav-arrows="true">
+    <% if !service_product.portfolio_images.empty? %>
+      <% service_product.portfolio_images.order("created_at asc").each do |image| %>
+        <div class="flex flex-col">
+          <%= link_to services_detail_path(service_product.id), class: "flex flex-col gotolink", :"data-no-turbolink" => false do %>
+            +
+          <% end %>
+          <%= image_tag cdn_for(image), class: "w-full align-middle aspect-[5/3] object-cover" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="flex flex-col">
+        <%= link_to services_detail_path(service_product.id), class: "flex flex-col gotolink", :"data-no-turbolink" => false do %>
+          +
+        <% end %>
+        <%= image_tag "cover/#{service_product.service.service_code.camelize.underscore}_cover", class: "w-full align-middle aspect-[5/3] object-cover" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="border-t border-pangea-border-light-gray p-3">
+    <%= link_to services_detail_path(service_product.id), target: "_blank", class: "flex flex-col", :"data-no-turbolink" => false do %>
+      <div class="flex flex-row items-center">
+        <% if service_product.designer.user.profile_image.attached? %>
+          <%= image_tag service_product.designer.user.profile_image, class: "rounded-full h-10 w-10 align-middle p-1" %>
+        <% else %>
+          <%= image_tag "user_placeholder.png", class: "rounded-full h-10 w-10 align-middle p-1" %>
+        <% end %>
+        <div class="ml-1 text-sm font-medium text-pangea-black">
+          <%= service_product.designer.user.user_name %>
+        </div>
+      </div>
+      <div class="font-normal text-pangea-gray-text line-clamp-2 mb-auto m-2 font-sans h-12">
+        <%= service_product.title %>
+      </div>
+      <div class="flex">
+        <div class="ml-auto text-right mt-3">
+          <div class="text-xs text-pangea-gray-text">Starting at</div>
+          <div class="flex flex-row items-center uppercase text-black text-1.5xl font-semibold">
+            <%= session[:currency] %>
+            <%= converted_service_fee(service_product.minimum_fee, service_product.service_fee_currency) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="p-3 flex border-t border-pangea-border-light-gray">
+    <div class="text-sm flex items-center text-gray-500 font-semibold">
+      <% if service_product.is_designer_offline %>
+        <%= image_tag "offline", class: "rounded-full h-8 w-8 align-middle p-1" %> Offline
+      <% else %>
+        <%= image_tag "online", class: "rounded-full h-8 w-8 align-middle p-1" %> Online
+      <% end %>
+    </div>
+    <div class="flex items-center ml-auto">
+      <i class="material-icons mr-1 text-pangea-rating-yellow ml-auto md-18">star_rate</i><span class="text-sm text-gray-500 font-semibold"><%= '%.01f' % service_product.average_rating.to_f %></span>
+      <% if !service_product.service_product_reviews.empty? %>
+      <span class="text-pangea-light-gray ml-1 text-sm">
+        (<%= service_product.service_product_reviews.length %>)
+      </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="absolute top-2 right-2 z-10">
+    <%= render "service_product/favorite_service_product", service_product: service_product %>
+  </div>
+</div>

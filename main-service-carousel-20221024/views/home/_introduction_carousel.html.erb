@@ -1,0 +1,85 @@
+<div class="flex flex-col justify-center bg-auto bg-cover bg-gradient-to-r pb-10" style="background: url('<%= image_url 'video_mask_bg' %>');background-repeat: no-repeat;background-position: center;" >
+  <div class="flex flex-col items-center max-width">
+    <div class="w-full flex flex-col items-center relative">
+      <div class="text-center w-full">
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col items-center z-10 w-4/5"><!-- min-h-introduction-carousel-->
+            <div id="introduction-carousel" class="carousel owl-carousel" data-controller="carousel" data-items-sm="1" data-items-md="1" data-items="1" data-carousel-target="carouselImages" data-dots="false" data-nav-arrows="true" data-autoplay="true" data-infinite="true">
+              <div class="m-10 p-6 p-0-max-1399 border-pangea-blue rounded-xl">
+                <div class="flex flex-row flex-col-max-1399">
+                  <div class="flex flex-col items-center relative w-1/2-max-1399 mx-auto-max-1399" style="padding:1.5rem 1.5rem 1.5rem 3rem;">
+                    <%= image_tag 'video_bg', class: "min-w-full absolute top-0 left-0 z--9" %>
+                    <div class="tracking-wider font-poppins text-xl my-5">DIGITAL DENTAL WORLD</div>
+                    <div class="font-poppins text-5xl uppercase text-white font-semibold leading-none">WHY PANGEA
+                    </div>
+                    <div class="text-pangea-gray-text mt-1 text-lg">Explore The Perfect Designer</div>
+                    <%= image_tag 'play_button', class: "w-12 align-stretch object-fit shadow-lg rounded-full filter-sat1/2" %>
+                    <div class="font-poppins text-xl uppercase tracking-widest font-poppins text-white mt-2">SEE HOW TO USE</div>
+                  </div>
+                  <div class="relative d-none-max-1399 ml-4">
+                    <%= image_tag 'video_title_bg', class: "min-w-full absolute top-0 left-0 z--9" %>
+                    <div class="flex flex-col relative top-1/2">
+                      <%= render 'introduction_detail_card', image_icon: 'sentiment_satisfied', title: 'Various Quality Level Of Work', description: 'You can find the best design results not only from the local but also globally now.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'search', title: 'Find The Best Technicians For Your Style', description: 'There is a professional technicians who can catch your style.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'attach_money', title: 'Save Payment', description: 'No cost until you approve the quality of work and always flexible to negotiate the rates.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'language', title: 'Let The Business Run', description: 'Professional technicians will get the work done while your business sleeps from the other side of the world.' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-10 p-6 p-0-max-1399 border-pangea-blue rounded-xl">
+                <div class="flex flex-row flex-col-max-1399">
+                  <div class="flex flex-col items-center relative w-1/2-max-1399 mx-auto-max-1399" style="padding:1.5rem 1.5rem 1.5rem 3rem;">
+                    <%= image_tag 'video_bg', class: "min-w-full absolute top-0 left-0 z--9" %>
+                    <div class="tracking-wider font-poppins text-xl my-8">WHY PANGEA</div>
+                    <div class="font-poppins text-5xl uppercase text-white font-semibold leading-none">FOR
+                      BUSINESSES
+                    </div>
+                    <div class="text-pangea-gray-text mt-1 text-lg">Dentists, Denturists, Dental Lab Owner</div>
+                    <%= image_tag 'play_button', class: "w-12 align-stretch object-fit shadow-lg rounded-full filter-sat1/2" %>
+                    <div class="font-poppins text-xl uppercase tracking-widest font-poppins text-white mt-2">SEE HOW TO USE</div>
+                  </div>
+                  <div class="relative d-none-max-1399 ml-4">
+                    <%= image_tag 'video_title_bg', class: "min-w-full absolute top-0 left-0 z--9" %>
+                    <div class="flex flex-col relative top-1/2">
+                      <%= render 'introduction_detail_card', image_icon: 'sentiment_satisfied', title: 'Various Quality Level Of Work', description: 'You can find the best design results not only from the local but also globally now.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'search', title: 'Find The Best Technicians For Your Style', description: 'There is a professional technicians who can catch your style.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'attach_money', title: 'Save Payment', description: 'No cost until you approve the quality of work and always flexible to negotiate the rates.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'language', title: 'Let The Business Run', description: 'Professional technicians will get the work done while your business sleeps from the other side of the world.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'history', title: '24/7 Support', description: 'We are here for better communication and get the work you need done right.' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-10 p-6 p-0-max-1399 border-pangea-blue rounded-xl">
+                <div class="flex flex-row flex-col-max-1399">
+                  <div class="flex flex-col items-center relative w-1/2-max-1399 mx-auto-max-1399" style="padding:1.5rem 1.5rem 1.5rem 3rem;">
+                    <%= image_tag 'video_bg', class: "min-w-full absolute top-0 left-0 z--9" %>
+                    <div class="tracking-wider font-poppins text-xl my-8">WHY PANGEA</div>
+                    <div class="font-poppins text-5xl uppercase text-white font-semibold leading-none">FOR DESIGNERS
+                    </div>
+                    <div class="text-pangea-gray-text mt-1 text-lg">Dental CAD/CAM Designers</div>
+                    <a href="" >
+                      <%= image_tag 'play_button', class: "w-12 align-stretch object-fit shadow-lg rounded-full filter-sat1/2" %>
+                    </a>
+                    <!-- link_to image_tag('play_button', :class => "w-12 align-stretch object-fit shadow-lg rounded-full"), url_for({:controller => 'videoPlayer'}), :class => '', :remote => true -->
+                    <div class="font-poppins text-xl uppercase tracking-widest font-poppins text-white mt-2">SEE HOW TO USE</div>
+                  </div>
+                  <div class="relative d-none-max-1399 ml-4">
+                    <%= image_tag 'video_title_bg', class: "min-w-full absolute top-0 left-0 z--9" %>
+                    <div class="flex flex-col relative top-1/2">
+                      <%= render 'introduction_detail_card', image_icon: 'alarm_off', title: 'Going Further With Flexible Working Time', description: 'When, where, and how you work is on your hand.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'supervisor_account', title: 'Do Not Limit Your Clients Only To Local', description: 'There are a lot of clients who needs your design out there.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'verified_user', title: 'Protected Payment, Everytime', description: 'Your work contribution is important. Let us make sure your payment is right and easy.' %>
+                      <%= render 'introduction_detail_card', image_icon: 'history', title: '24/7 Support', description: 'Professional technicians will get the work done while your business sleeps from the other side of the world.' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

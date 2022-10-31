@@ -1,0 +1,36 @@
+<div class="flex flex-col justify-start lg:px-3 bg-contain bg-gradient-to-r" style="position: relative;top: -8rem;background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 30%);background-color: transparent;">
+  <!--background: url('<%= image_url 'particle_bg' %>');background-repeat: no-repeat;background-size: 100%;-->
+  <div class="flex flex-col items-center">
+    <!--<div class="w-full flex flex-col items-center my-10 relative text-center flex items-center justify-center">
+      <%= image_tag 'services', class: "w-service-typo align-stretch object-fit service-carousel-filter" %>
+      <div class="absolute">
+        <div class="font-poppins text-xl uppercase tracking-wider">Looking For</div>
+        <div class="font-poppins text-5xl uppercase text-pangea-blue font-semibold">professional
+          designers
+        </div>
+      </div>
+    </div>-->
+  </div>
+  <div class="flex flex-col items-center mt-6 max-width">
+    <div class="w-4/5 px-5">
+      <div id="carousel" class="carousel owl-carousel" data-controller="carousel" data-items-sm="2" data-items-md="4" data-items="5" data-carousel-target="carouselImages" data-dots="true" data-nav-arrows="true">
+        <% @service_categories.each do |service| %>
+          <%= link_to services_list_path(service.service_code) do %>
+            <div class="flex justify-center rounded-xl bg-carousel-background hover:opacity-75 h-44 3xl:h-56" style="background: url('<%= image_url "carousel/#{service.service_code.camelize.underscore}_service" %>');background-repeat: no-repeat;background-size: cover;background-position: center;">
+              <div class="flex flex-col items-end justify-center">
+                <div class="flex flex-col justify-center items-center p-2">
+                  <div class="font-poppins font-medium text-2xl text-center text-white leading-7"><%= service.service_name %></div>
+                  <div class="font-poppins font-light text-sm text-center text-white leading-5"><%= service.description %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="main-img-ship" class="absolute right-20 bottom--40 d-none-max-1399">
+    <%= image_tag 'main_globe', class: "w-40 opacity-75" %>
+  </div>
+</div>
